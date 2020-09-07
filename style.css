@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2b211a;
+}
+
+textarea {
+  height: 500px;
+}
+
+
+input.short {
+  width: 40px;
+}
+
+input[type="number"] {
+  width: 40px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Garamond;
+  font-variant: small-caps;
+}
+
+p {
+  font-size: 16px;
+}
+button {
+  text-transform: uppercase;
+}
+
+hr {
+  width: 185px;
+  color: black;
+  border: .5px dotted #2e2b26;
+}
+
+.container {
+  margin: auto;
+  width: 50%;
+  font-family: Garamond;
+  width: 1000px;
+}
+
+.section {
+  border: 2px solid #2b2924;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding: 4%;
+  background-color: #ad977b;
+}
+
+.item1top { grid-area: header; }
+.item2top{ grid-area: header; }
+.item3top{ grid-area: header; }
+
+.item1left {grid-area: left;}
+.item1left > div {
+  margin-top: 4px;
+}
+.item2left {grid-area: left;}
+.item3left {grid-area: left;}
+.item4left {grid-area: left;}
+
+.item1right {grid-area: right;}
+.item2right {grid-area: right;}
+.item3right {grid-area: right;}
+.item4right {grid-area: right;}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'left left left right right right';
+  grid-gap: 10px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.combat-box {
+  display: inline-block;
+}
+
+.folder {
+  background-color: #e6deca;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+}
+
+#buttons {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+#equipment-text, #proficiency-text {
+  width: 250px;
+}

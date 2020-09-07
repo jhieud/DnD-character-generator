@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>D&D 5e Character Generator</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <!-- contains the entire page -->
+    <div class="container">
+      <!-- contains the page description -->
+      <div class="section" id="description">
+        <h1>Dungeons & Dragons Character Generator</h1>
+        <p>This is a fillable character sheet for first-level D&D 5e characters.</p>
+        <p>Click the Randomize button to generate a random character.</p>
+        <p>Click the Clear button to reset all fields.</p>
+        <p>Navigate between Stats, Spells, and Equipment using the buttons below.</p>
+      </div>
+
+      <div id="buttons">
+        <button id="randomize">Randomize</button>
+        <button id="clear">Clear</button>
+      </div>
+      <!-- contains the top portion of the page -->
+      <div class="section">
+
+        <div id="top" class="grid-container">
+          <div class="item1top">
+            <h2>Basic Information</h2>
+          </div>
+
+          <div class="item1left">
+            <!--name-->
+            <div id="name-input">
+              <label>Name: </label>
+              <input type="text" id="name-text" value=""></input>
+            </div>
+
+            <!--race-->
+            <div id="choose-race-select">
+              <label>Race: </label>
+              <select id="choose-race">
+                <option id="default-race" value="" disabled selected>Choose a race</option>
+              </select>
+            </div>
+
+            <!--alignment-->
+            <div id="choose-alignment-select">
+              <label>Alignment: </label>
+              <select id="choose-alignment">
+                <option id="default-align" value="" disabled selected>Choose an alignment</option>
+              </select>
+            </div>
+
+            <!--class-->
+            <div id="choose-class-select">
+              <label>Class: </label>
+              <select id="choose-class">
+                <option id="default-class" value="" disabled selected>Choose a class</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!--citation: https://www.w3schools.com/w3css/w3css_tabulators.asp
+          contains the bottom portion: stats, spells, misc -->
+      <div id="bottom" class="section">
+        <div>
+          <div class="bottom nav bar">
+            <button class="nav button" onclick="switchTabs('stats')" id="stats-tab">Stats</button>
+            <button class="nav button" onclick="switchTabs('spells')" id="spells-tab">Spells</button>
+            <button class="nav button" onclick="switchTabs('inventory')" id="inventory-tab">Inventory</button>
+          </div>
+        </div>
+        <!-- STATS -->
+        <div id="stats" class="folder">
+          <div class="grid-container">
+            <div class="item2top">
+              <h2>Stats</h2>
+            </div>
+            <!-- ability scores -->
+
+            <div class="item2left">
+
+              <div id="ability-scores">
+                <h4>Ability Scores</h4>
+                <table id="skill-table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Mod</th>
+                  </tr>
+                  <tr>
+                    <td><label for="str-input">Strength</label></td>
+                    <td><input type="number" id="str-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="str-mod" class="asModInput"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="dex-input">Dexterity</label></td>
+                    <td><input type="number" id="dex-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="dex-mod" class="asModInput"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="con-input">Constitution</label></td>
+                    <td><input type="number" id="con-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="con-mod" class="asModInput"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="int-input">Intelligence</label></td>
+                    <td><input type="number" id="int-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="int-mod" class="asModInput"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="wis-input">Wisdom</label></td>
+                    <td><input type="number" id="wis-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="wis-mod" class="asModInput"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="cha-input">Charisma</label></td>
+                    <td><input type="number" id="cha-input" class="abScoreInput" max=30></td>
+                    <td><input type="number" id="cha-mod" class="asModInput"></td>
+                  </tr>
+                </table>
+
+                <hr>
+
+                <h4>Combat Info</h4>
+                <div id="combat" class="grid-item">
+                  <div class="combat-box">
+                    <label for="ac">AC</label><br>
+                    <input type="number" id="ac" class="short"><br>
+                  </div>
+                  <div class="combat-box">
+                    <label for="speed">Speed</label><br>
+                    <input type="number" id="speed" class="short">
+                  </div>
+                  <div class="combat-box">
+                    <label for="hp">HP</label><br>
+                    <input type="number" id="hp" class"short"><br>
+                  </div>
+                  <div class="combat-box">
+                    <label for="hd">Hit Dice</label><br>
+                    <input type="text" id="hd" class="short">
+                  </div>
+
+
+                  <hr>
+
+                  <div id="feats" class="grid-item">
+                    <h4>Features & Traits</h4>
+                    <textarea id="feats-input"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- proficiencies -->
+            <div id="proficiencies" class="item2right">
+              <div>
+                <h4>Proficiency Bonus</h4>
+                <input id="prof-bonus" type="number" class="grid-item">
+              </div>
+
+              <hr>
+              <!-- saving throws -->
+              <div id="saving-throws">
+                <h4>Saving Throws</h4>
+                <table id="save-table">
+                  <tr>
+                    <th>p?</th>
+                    <th>mod</th>
+                    <th>name</th>
+                    <th>attr</th>
+                  </tr>
+                  <tr>
+                    <td id="str-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="str-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>strength</td>
+                    <td>str</td>
+                  </tr>
+                  <tr>
+                    <td id="dex-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="dex-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>dexterity</td>
+                    <td>dex</td>
+                  </tr>
+                  <tr>
+                    <td id="con-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="conr-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>constitution</td>
+                    <td>con</td>
+                  </tr>
+                  <tr>
+                    <td id="int-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="int-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>intelligence</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td id="wis-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="wis-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>wisdom</td>
+                    <td>wis</td>
+                  </tr>
+                  <tr>
+                    <td id="cha-s-check"><input type="checkbox" class="save-checks"></td>
+                    <td id="cha-s-mod"><input type="number" class="save-mod-input"></td>
+                    <td>charisma</td>
+                    <td>char</td>
+                  </tr>
+                </table>
+              </div>
+              <hr>
+              <!-- skills -->
+              <div id="skills">
+                <h4 for="skill-table">Skills</h4>
+                <table id="skill-table">
+                  <tr>
+                    <th>p?</th>
+                    <th>mod</th>
+                    <th>skill</th>
+                    <th>attr</th>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>acrobatics</td>
+                    <td>dex</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>animal handling</td>
+                    <td>wis</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>arcana</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>athletics</td>
+                    <td>str</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>deception</td>
+                    <td>cha</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>history</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>insight</td>
+                    <td>wis</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>intimidation</td>
+                    <td>cha</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>investigation</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>medicine</td>
+                    <td>wis</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>nature</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>perception</td>
+                    <td>wis</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>performance</td>
+                    <td>cha</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>persuasion</td>
+                    <td>cha</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>religion</td>
+                    <td>int</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>sleight of hand</td>
+                    <td>dex</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>stealth</td>
+                    <td>dex</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" class="skill-checks"></td>
+                    <td><input type="number" class="skill-mod-input"></td>
+                    <td>survival</td>
+                    <td>wis</td>
+                  </tr>
+
+                </table>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SPELLS -->
+        <div id="spells" class="folder" style="display:none">
+          <div class="grid-container">
+            <div class="item3top">
+              <h2>Spells</h2>
+            </div>
+
+            <div id="cantrips" class-"item3left">
+              <h3>Cantrips</h3>
+              <label>Cantrips:</label>
+              <input type="number" id="cans-known">
+
+              <table id="cantrips-table">
+                <tr>
+                  <th>Name</th>
+                  <th>Range</th>
+                </tr>
+                <tr>
+                  <td><input type="text" class="can-name"></td>
+                  <td><input type="text" class="can-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="can-name"></td>
+                  <td><input type="text" class="can-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="can-name"></td>
+                  <td><input type="text" class="can-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="can-name"></td>
+                  <td><input type="text" class="can-range"></td>
+                </tr>
+              </table>
+            </div>
+
+            <div id="lvl1" class="item3right">
+              <h3>Level 1</h3>
+              <label>Spells:</label>
+              <input type="number" id="spells-known">
+
+              <label>Spell slots:</label>
+              <input type="number" id="spell-slots">
+
+              <table id="lvl1-table">
+                <tr>
+                  <th>Name</th>
+                  <th>Range</th>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="spell-name"></td>
+                  <td><input type="text" class="spell-range"></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROFICIENCIES & INVENTORY -->
+        <div id="inventory" class="folder" style="display:none">
+          <div class="grid-container">
+            <div class="item4top">
+              <h2>Inventory</h2>
+            </div>
+            <div id="other-proficiencies" class="item4left">
+              <h4>Other Proficiencies & Languages</h4>
+              <textarea id="proficiency-text"></textarea>
+            </div>
+            <div id="equipment" class="item4right">
+              <h4>Equipment</h4>
+              <textarea id="equipment-text"></textarea>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+  <script src="./library.js"></script>
+  <script src="./randomizer.js"></script>
+  <script src="./script.js"></script>
+</html>
