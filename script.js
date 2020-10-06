@@ -8,6 +8,10 @@ randomizerButton.addEventListener("click", fillRandomSheet);
 var clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", clearSheet);
 
+//when the save button is clicked, saves the information as a .txt file
+var saveButton = document.getElementById("save");
+saveButton.addEventListener("click", saveFile);
+
 //citation: https://www.w3schools.com/w3css/w3css_tabulators.asp
 //switches between embedded pages
 function switchTabs(tab) {
@@ -19,6 +23,92 @@ function switchTabs(tab) {
   document.getElementById(tab).style.display = "block";
 }
 
+//-------- SAVE DATA FUNCTION ------------
+//code taken from https:
+// //www.encodedna.com/javascript/how-to-save-form-data-in-a-text-file-using-javascript.htm
+function saveFile() {
+  //get the data from each element
+  const indRace = document.getElementById("choose-race");
+  const indAlign = document.getElementById("choose-alignment");
+  const indClass = document.getElementById("choose-class");
+
+  const saveName = document.getElementById("name-text");
+  const saveRace = indRace.options[indRace.selectedIndex];
+  const saveAlign = indAlign.options[indAlign.selectedIndex];
+  const saveClass = indClass.options[indClass.selectedIndex];
+
+  //combat
+  const saveAC = document.getElementById("ac");
+  const saveSpeed = document.getElementById("speed");
+  const saveHP = document.getElementById("hp");
+  const saveHD = document.getElementById("hd");
+
+  //feats
+  const saveFeats = document.getElementById("feats-input");
+
+  //proficiencies
+  const savePBonus = document.getElementById("prof-bonus");
+
+  //spells
+  const saveSpells = document.getElementById("spells");
+
+  //inventory
+  const saveOtherProf = document.getElementById("proficiency-text");
+  const saveEquipment = document.getElementById("equipment-text");
+
+  //stores all data
+  let fileData = "\r BASIC INFORMATION \r\n " +
+                "-------------------------------------- \r\n\n " +
+                "Name: " + saveName.value + " \r\n " +
+                "Race: " + saveRace.text + " \r\n " +
+                "Alignment: " + saveAlign.text + " \r\n " +
+                "Class: " + saveClass.text + " \r\n\n " +
+
+                "STATS \r\n " +
+                "-------------------------------------- \r\n\n " +
+                "-- Ability Scores -- \r\n " +
+                getAbScoreValues() + "\n " +
+                "-- Combat Info -- \r\n " +
+                "Armor Class:" + saveAC.value + " \r\n " +
+                "Speed:" + saveSpeed.value + " \r\n " +
+                "Hit Points:" + saveHP.value + " \r\n " +
+                "Hit Dice:" + saveHD.value + " \r\n\n " +
+                "-- Feats and Traits -- \r\n" +
+                saveFeats.value + " \r\n " +
+                "-- Proficiency Bonus : " + savePBonus.value + " -- \r\n\n " +
+                "-- Saving Throws-- \r\n " +
+                getSaveThrowValues() +
+                "\n -- Skills -- \r\n " +
+                getSkills() +
+                "\n INVENTORY \r\n " +
+                "-------------------------------------- \r\n\n " +
+                "-- Other Proficiencies & Languages -- \r\n " +
+                saveOtherProf.value + " \r\n\n " +
+                "-- Equipment -- \r\n " +
+                saveEquipment.value + " \r\n\n " +
+                "\n SPELLS \r\n " +
+                "-------------------------------------- \r\n\n " +
+                getMagic("cantrip") + "\n " + getMagic("spell");
+
+  //convert text to BLOB
+  const textToBLOB = new Blob([fileData], { type: "text/plain"});
+  const sFileName = "CharSheet.txt";
+
+  let newLink = document.createElement("a");
+  newLink.download = sFileName;
+
+  if (window.webkitURL != null) {
+    newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+  } else {
+    newLink.href = window.URL.createObjectURL(textToBLOB);
+    newLink.style.display = "none";
+    document.body.appendChild(newLink);
+  }
+
+  newLink.click();
+}
+
+
 //---------SHEET-BUILDING FUNCTION CALLS------------
 //initialize race, alignment, and class dropdowns
 makeDropdown("choose-race", races);
@@ -26,6 +116,130 @@ makeDropdown("choose-alignment", alignments);
 makeDropdown("choose-class", classes);
 
 //---------- HELPER FUNCTION DEFINITIONS -----------
+//gets the cantrips or spells depending on input and returns them as a string. god im lazy
+function getMagic(cantripOrSpell) {
+  var input = cantripOrSpell;
+  var magicListLength;
+  var magicNum;
+  var magicLabel;
+  var magicNameList;
+  var magicRangeList;
+  var slots = "";
+
+  var dataAsStrings;
+
+  if (input == "cantrip") {
+    magicListLength = 4;
+    magicLabel = "Cantrips";
+    magicNum = document.getElementById("cans-known").value;
+
+    magicNameList = document.getElementsByClassName("can-name");
+    magicRangeList = document.getElementsByClassName("can-range");
+
+  } else if (input == "spell") {
+    magicListLength = 5;
+    magicLabel = "Level 1 Spells"
+    magicNum = document.getElementById("spells-known").value;
+    slots = "Slots: " + document.getElementById("spell-slots").value + " \r\n ";
+
+    magicNameList = document.getElementsByClassName("spell-name");
+    magicRangeList = document.getElementsByClassName("spell-range");
+
+  }
+
+  var dataAsStrings = " -- " + magicLabel + ": " + magicNum + " -- \r\n " + slots;
+
+  for (var i = 0; i<magicListLength; i++) {
+    var name = magicNameList[i].value;
+    var range = magicRangeList[i].value;
+
+    dataAsStrings = dataAsStrings + "Name: " + name + "|| Range: " + range + " \r\n ";
+  }
+  return dataAsStrings;
+}
+
+//ges the skills and returns them as a string
+function getSkills() {
+  var skillLabelList = document.getElementsByClassName("skill-label");
+  var skillModList = document.getElementsByClassName("skill-mod-input");
+  var skillProfList = document.getElementsByClassName("skill-checks");
+  var skillAttrList = document.getElementsByClassName("skill-attr");
+
+  var dataAsStrings = "";
+
+  for (var i = 0; i<skillsArray.length; i++) {
+    var labElement = skillLabelList[i];
+    var lab = labElement.innerHTML;
+
+    var modElement = skillModList[i];
+    var mod = modElement.value;
+
+    var profElement = skillProfList[i];
+    var prof = profElement.checked;
+
+    var attrElement = skillAttrList[i];
+    var attr = attrElement.innerHTML;
+
+    dataAsStrings = dataAsStrings + lab + ": \r\n " + "     Modifier: " + mod + " || Proficiency: " +
+                    prof + " || Attribute: " + attr + " \r\n\n ";
+  }
+  return dataAsStrings;
+}
+
+// gets the saving throw information and returns it as a string
+function getSaveThrowValues() {
+  var saveLabelList = document.getElementsByClassName("abLabel");
+  var saveModList = document.getElementsByClassName("save-mod-input");
+  var saveProfList = document.getElementsByClassName("save-checks");
+
+  var dataAsStrings = "";
+
+  for (var i = 0; i<abilitiesArray.length; i++) {
+    var labEl = saveLabelList[i];
+    var lab = labEl.innerHTML;
+
+    var modEl = saveModList[i];
+    var mod = modEl.value;
+
+    var profEl = saveProfList[i];
+    var prof = profEl.checked;
+
+    dataAsStrings = dataAsStrings + lab + ": \r\n " + "     Modifier: " + mod +
+                    " || Proficiency: " + prof + " \r\n\n ";
+
+  }
+  return dataAsStrings;
+}
+// returns the ability scores and modifiers as string
+function getAbScoreValues() {
+  var abLabelList  = document.getElementsByClassName("abLabel");
+  var abScoreList = document.getElementsByClassName("abScoreInput");
+  var abModList = document.getElementsByClassName("asModInput");
+
+  var labelElement;
+  var lab;
+  var scoreElement;
+  var score;
+  var modElement;
+  var mod;
+
+  var dataAsStrings = "";
+
+  for (var i = 0; i<abilitiesArray.length; i++) {
+    labelElement = abLabelList[i];
+    lab = labelElement.textContent;
+
+    scoreElement = abScoreList[i];
+    score = scoreElement.value;
+
+    modElement = abModList[i];
+    mod = modElement.value;
+
+    dataAsStrings = dataAsStrings + lab + ": " + score + ", Modifier: " + mod + " \r\n ";
+  }
+  return dataAsStrings;
+}
+
 //resets all the character values in the page
 function clearSheet() {
   clearByTags("input");
@@ -87,7 +301,7 @@ function fillRandomSheet() {
   fillTextArea("proficiency-text", char.proficiencies);
 }
 
-//clears the balues of all elements with the given tags
+//clears the values of all elements with the given tags
 function clearByTags(tagName) {
   var elList = document.getElementsByTagName(tagName);
   var item;

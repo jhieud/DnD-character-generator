@@ -14,12 +14,14 @@
         <p>This is a fillable character sheet for first-level D&D 5e characters.</p>
         <p>Click the Randomize button to generate a random character.</p>
         <p>Click the Clear button to reset all fields.</p>
+        <p>Click the Save button to save your character information (downloads as a .txt file)</p>
         <p>Navigate between Stats, Spells, and Equipment using the buttons below.</p>
       </div>
 
       <div id="buttons">
         <button id="randomize">Randomize</button>
         <button id="clear">Clear</button>
+        <button id="save">Save data as file</button>
       </div>
       <!-- contains the top portion of the page -->
       <div class="section">
@@ -93,32 +95,32 @@
                     <th>Mod</th>
                   </tr>
                   <tr>
-                    <td><label for="str-input">Strength</label></td>
+                    <td><label for="str-input" class="abLabel">Strength</label></td>
                     <td><input type="number" id="str-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="str-mod" class="asModInput"></td>
                   </tr>
                   <tr>
-                    <td><label for="dex-input">Dexterity</label></td>
+                    <td><label for="dex-input" class="abLabel">Dexterity</label></td>
                     <td><input type="number" id="dex-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="dex-mod" class="asModInput"></td>
                   </tr>
                   <tr>
-                    <td><label for="con-input">Constitution</label></td>
+                    <td><label for="con-input" class="abLabel">Constitution</label></td>
                     <td><input type="number" id="con-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="con-mod" class="asModInput"></td>
                   </tr>
                   <tr>
-                    <td><label for="int-input">Intelligence</label></td>
+                    <td><label for="int-input" class="abLabel">Intelligence</label></td>
                     <td><input type="number" id="int-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="int-mod" class="asModInput"></td>
                   </tr>
                   <tr>
-                    <td><label for="wis-input">Wisdom</label></td>
+                    <td><label for="wis-input" class="abLabel">Wisdom</label></td>
                     <td><input type="number" id="wis-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="wis-mod" class="asModInput"></td>
                   </tr>
                   <tr>
-                    <td><label for="cha-input">Charisma</label></td>
+                    <td><label for="cha-input" class="abLabel">Charisma</label></td>
                     <td><input type="number" id="cha-input" class="abScoreInput" max=30></td>
                     <td><input type="number" id="cha-mod" class="asModInput"></td>
                   </tr>
@@ -178,31 +180,31 @@
                     <td id="str-s-check"><input type="checkbox" class="save-checks"></td>
                     <td id="str-s-mod"><input type="number" class="save-mod-input"></td>
                     <td>strength</td>
-                    <td>str</td>
+                    <td class="save-label">str</td>
                   </tr>
                   <tr>
                     <td id="dex-s-check"><input type="checkbox" class="save-checks"></td>
                     <td id="dex-s-mod"><input type="number" class="save-mod-input"></td>
                     <td>dexterity</td>
-                    <td>dex</td>
+                    <td class="save-label">dex</td>
                   </tr>
                   <tr>
                     <td id="con-s-check"><input type="checkbox" class="save-checks"></td>
                     <td id="conr-s-mod"><input type="number" class="save-mod-input"></td>
                     <td>constitution</td>
-                    <td>con</td>
+                    <td class="save-label">con</td>
                   </tr>
                   <tr>
                     <td id="int-s-check"><input type="checkbox" class="save-checks"></td>
                     <td id="int-s-mod"><input type="number" class="save-mod-input"></td>
                     <td>intelligence</td>
-                    <td>int</td>
+                    <td class="save-label">int</td>
                   </tr>
                   <tr>
                     <td id="wis-s-check"><input type="checkbox" class="save-checks"></td>
                     <td id="wis-s-mod"><input type="number" class="save-mod-input"></td>
                     <td>wisdom</td>
-                    <td>wis</td>
+                    <td class="save-label">wis</td>
                   </tr>
                   <tr>
                     <td id="cha-s-check"><input type="checkbox" class="save-checks"></td>
@@ -226,110 +228,110 @@
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>acrobatics</td>
-                    <td>dex</td>
+                    <td class="skill-label">acrobatics</td>
+                    <td class="skill-attr">dex</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>animal handling</td>
-                    <td>wis</td>
+                    <td class="skill-label">animal handling</td>
+                    <td class="skill-attr">wis</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>arcana</td>
-                    <td>int</td>
+                    <td class="skill-label">arcana</td>
+                    <td class="skill-attr">int</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>athletics</td>
-                    <td>str</td>
+                    <td class="skill-label">athletics</td>
+                    <td class="skill-attr">str</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>deception</td>
-                    <td>cha</td>
+                    <td class="skill-label">deception</td>
+                    <td class="skill-attr">cha</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>history</td>
-                    <td>int</td>
+                    <td class="skill-label">history</td>
+                    <td class="skill-attr">int</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>insight</td>
-                    <td>wis</td>
+                    <td class="skill-label">insight</td>
+                    <td class="skill-attr">wis</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>intimidation</td>
-                    <td>cha</td>
+                    <td class="skill-label">intimidation</td>
+                    <td class="skill-attr">cha</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>investigation</td>
-                    <td>int</td>
+                    <td class="skill-label">investigation</td>
+                    <td class="skill-attr">int</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>medicine</td>
-                    <td>wis</td>
+                    <td class="skill-label">medicine</td>
+                    <td class="skill-attr">wis</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>nature</td>
-                    <td>int</td>
+                    <td class="skill-label">nature</td>
+                    <td class="skill-attr">int</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>perception</td>
-                    <td>wis</td>
+                    <td class="skill-label">perception</td>
+                    <td class="skill-attr">wis</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>performance</td>
-                    <td>cha</td>
+                    <td class="skill-label">performance</td>
+                    <td class="skill-attr">cha</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>persuasion</td>
-                    <td>cha</td>
+                    <td class="skill-label">persuasion</td>
+                    <td class="skill-attr">cha</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>religion</td>
-                    <td>int</td>
+                    <td class="skill-label">religion</td>
+                    <td class="skill-attr">int</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>sleight of hand</td>
-                    <td>dex</td>
+                    <td class="skill-label">sleight of hand</td>
+                    <td class="skill-attr">dex</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>stealth</td>
-                    <td>dex</td>
+                    <td class="skill-label">stealth</td>
+                    <td class="skill-attr">dex</td>
                   </tr>
                   <tr>
                     <td><input type="checkbox" class="skill-checks"></td>
                     <td><input type="number" class="skill-mod-input"></td>
-                    <td>survival</td>
-                    <td>wis</td>
+                    <td class="skill-label">survival</td>
+                    <td class="skill-attr">wis</td>
                   </tr>
 
                 </table>
